@@ -27,7 +27,7 @@ const Card = (props) => {
       <div className={props.save ? 'card' : 'card card-hover'}>
         <h4 className='card-top'>
           {props.role === 'Main' && props.type !== 'question'
-            ? 'Rundenargument'
+            ? 'Rundenkarte'
             : null}
           {props.role === 'affirmative' && props.type !== 'question'
             ? 'Pro'
@@ -53,7 +53,17 @@ const Card = (props) => {
               <h5 className='card-bottom__left-corner'>
                 <GiBangingGavel /> {props.judgeRating}
               </h5>
-
+              {props.save ? (
+                <div>
+                  {cardSaved ? (
+                    <p className='card-save'>gespeichert</p>
+                  ) : (
+                    <button onClick={handleCardSave}>
+                      <HiOutlineSaveAs />
+                    </button>
+                  )}
+                </div>
+              ) : null}
               <h5 className='card-bottom__right-corner'>
                 <GrOverview /> {props.spectatorRating}
               </h5>
@@ -78,18 +88,6 @@ const Card = (props) => {
                   <TiThumbsDown />
                 </button>
               </>
-            )}
-          </div>
-        ) : null}
-
-        {props.save ? (
-          <div className='fb100'>
-            {cardSaved ? (
-              <p>in Deck gespeichert</p>
-            ) : (
-              <button onClick={handleCardSave}>
-                <HiOutlineSaveAs />
-              </button>
             )}
           </div>
         ) : null}
