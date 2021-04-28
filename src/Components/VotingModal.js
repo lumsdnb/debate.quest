@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Card from "./Card.js";
-import "./Modal.css";
+import React, { useState } from 'react';
+import Card from './Card.js';
+import './Modal.css';
 
-import Player from "./Player.js";
+import Player from './Player.js';
 
 const VotingModal = (props) => {
-  const [yourWinner, setYourWinner] = useState("unset");
-  const [ruling, setRuling] = useState("");
+  const [yourWinner, setYourWinner] = useState('unset');
+  const [ruling, setRuling] = useState('');
 
   const handleRuling = (e) => {
     setRuling(e.target.value);
@@ -21,7 +21,7 @@ const VotingModal = (props) => {
   }
 
   const sendVote = () => {
-    if (props.role === "judge") {
+    if (props.role === 'judge') {
       sendRuling();
     }
     props.voteFor(yourWinner);
@@ -116,45 +116,49 @@ const VotingModal = (props) => {
               <div className='flex-row'>
                 <button
                   className={
-                    yourWinner === "aff" ? "select-highlight" : "select-buttons"
+                    yourWinner === 'pro' ? 'select-highlight' : 'select-buttons'
                   }
                   onClick={() => {
-                    selectVote("aff");
+                    selectVote('pro');
                   }}
                 >
                   <Player
                     avi={props.game.affirmativeAvi}
                     name={props.game.affirmativeName}
-                    role={"pro"}
+                    role={'pro'}
                   />
                 </button>
                 <button
                   className={
-                    yourWinner === "tie" ? "select-highlight" : "select-buttons"
+                    yourWinner === 'unentschieden'
+                      ? 'select-highlight'
+                      : 'select-buttons'
                   }
                   onClick={() => {
-                    selectVote("tie");
+                    selectVote('unentschieden');
                   }}
                 >
                   <h4 classname='center-flex'>Unentschieden</h4>
                 </button>
                 <button
                   className={
-                    yourWinner === "neg" ? "select-highlight" : "select-buttons"
+                    yourWinner === 'contra'
+                      ? 'select-highlight'
+                      : 'select-buttons'
                   }
                   onClick={() => {
-                    selectVote("neg");
+                    selectVote('contra');
                   }}
                 >
                   <Player
                     avi={props.game.negativeAvi}
                     name={props.game.negativeName}
-                    role={"contra"}
+                    role={'contra'}
                   />
                 </button>
               </div>
               <div className='neo-box-outward flex-row'>
-                {props.role === "judge" ? (
+                {props.role === 'judge' ? (
                   <>
                     <h4>dein Urteil:</h4>
                     <textarea
@@ -163,7 +167,7 @@ const VotingModal = (props) => {
                     />
                   </>
                 ) : null}
-                {yourWinner !== "unset" ? (
+                {yourWinner !== 'unset' ? (
                   <button onClick={sendVote}>abstimmen</button>
                 ) : null}
               </div>
