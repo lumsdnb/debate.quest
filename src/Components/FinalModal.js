@@ -5,6 +5,7 @@ import AvatarGen from './AvatarGen.js';
 
 const FinalModal = (props) => {
   const [showBtn, setShowBtn] = useState(false);
+
   const doneVoting = () => {
     if (
       props.finalVotes.aff &&
@@ -94,7 +95,9 @@ const FinalModal = (props) => {
             )}
           </div>
         </div>
-        <button onClick={props.resetGame}>Neues Spiel</button>
+        {doneVoting ? (
+          <button onClick={props.resetGame}>Neues Spiel</button>
+        ) : null}
       </div>
     </>
   );
