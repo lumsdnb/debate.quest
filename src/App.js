@@ -122,7 +122,7 @@ const App = () => {
     volume: 0.2,
   });
   const [playAirhorn] = useSound(soundAirhorn, {
-    volume: 0.2,
+    volume: 0.1,
   });
   const [playBigHammer] = useSound(soundBigHammer, {
     volume: 0.2,
@@ -135,7 +135,7 @@ const App = () => {
     volume: 0.6,
   });
   useEffect(() => {
-    socketRef.current = io.connect(productionENDPOINT);
+    socketRef.current = io.connect(localENDPOINT);
     socketRef.current.on('your id', (id) => {
       setYourID(id);
     });
@@ -241,7 +241,7 @@ const App = () => {
     socketRef.current.on('please vote', () => {
       setShowVoting(true);
     });
-  }, []);
+  }, [socketRef]);
 
   const oneTimerPerRound = () => {
     if (!roundTimerWasUsed) {
@@ -391,6 +391,8 @@ const App = () => {
     setShowInfo(false);
   }
 
+  const closeJudgeModal = () => setShowRuling(false);
+
   function changeAvi(e) {
     setUserAvi(e);
   }
@@ -412,10 +414,6 @@ const App = () => {
     socketRef.current.emit('set topic', t);
   };
 
-  const handleSoundKeys = (e) => {
-    console.log(e.key);
-  };
-
   const handleDebateField = (e) => {
     setTopic(e.target.value);
   };
@@ -426,6 +424,11 @@ const App = () => {
 
   const nextRound = () => {
     emitGavel();
+    if (game.round > 4) {
+      setShowCommentary(false);
+      setRoundTimerWasUsed(false);
+      setShowTimer(false);
+    }
     if (game.round <= 4) socketRef.current.emit('next round');
   };
   const finishGame = (e) => {
@@ -526,7 +529,7 @@ const App = () => {
         title='Richter sagt:'
         showModal={showRuling}
         body={judgeMessage}
-        closeModal={closeModal}
+        closeModal={closeJudgeModal}
       />
       <Modal
         title='Die Debatte beginnt'
@@ -716,7 +719,7 @@ const App = () => {
           <img src={crowd} alt='crowd cheering' draggable='false'></img>
         </div>
         <div className='card-deck'>
-          {role === 'judge' ? null : (
+          {role === 'judge' || role === 'spectator' ? null : (
             <button className='deck-button' onClick={showDeck}>
               <img src={deckbtn} alt='deck öffnen' draggable='false'></img>
             </button>
@@ -728,11 +731,9 @@ const App = () => {
         <div className='toolbox'>
           {role === 'spectator' ? (
             <>
-              <div onKeyPress={handleSoundKeys}>
-                <button onClick={emitWoo}>woo</button>
-                <button onClick={emitBoo}>boo</button>
-                <button onClick={emitAirhorn}>airhorn</button>
-              </div>
+              <button onClick={emitWoo}>woo</button>
+              <button onClick={emitBoo}>boo</button>
+              <button onClick={emitAirhorn}>airhorn</button>
             </>
           ) : (
             <Toolbox
