@@ -1,17 +1,17 @@
-import React from "react";
-import "./Modal.css";
+import React from 'react';
+import './Modal.css';
 
-import { RiSwordFill } from "react-icons/ri";
-import { GiBangingGavel } from "react-icons/gi";
+import { RiSwordFill } from 'react-icons/ri';
+import { GiBangingGavel } from 'react-icons/gi';
 
-import AvatarGen from "./AvatarGen.js";
+import AvatarGen from './AvatarGen.js';
 
 const Modal = (props) => {
   return (
     <>
       <div
         className='modal-popup'
-        style={{ display: props.showModal ? "block" : "none" }}
+        style={{ display: props.showModal ? 'block' : 'none' }}
       >
         <div>
           <h3>{props.title}</h3>
@@ -24,7 +24,7 @@ const Modal = (props) => {
                   <AvatarGen
                     className='fb100'
                     i={props.game.judgeAvi}
-                    style={{ width: "3.8rem", height: "3.8rem" }}
+                    style={{ width: '3.8rem', height: '3.8rem' }}
                   />
                   <div>{props.game.judgeName}</div>
                 </div>
@@ -32,11 +32,11 @@ const Modal = (props) => {
 
               <div className='login-player fb50'>
                 <div className='login-flex-player'>
-                  <strong>Pro</strong>{" "}
+                  <strong>Pro</strong>{' '}
                   <AvatarGen
                     className='fb100'
                     i={props.game.affirmativeAvi}
-                    style={{ width: "3.8rem", height: "3.8rem" }}
+                    style={{ width: '3.8rem', height: '3.8rem' }}
                   />
                   <RiSwordFill className='big-icon' />
                   <div>{props.game.affirmativeName}</div>
@@ -48,7 +48,7 @@ const Modal = (props) => {
                   <AvatarGen
                     className='fb100'
                     i={props.game.negativeAvi}
-                    style={{ width: "3.8rem", height: "3.8rem" }}
+                    style={{ width: '3.8rem', height: '3.8rem' }}
                   />
                   <RiSwordFill className='big-icon' />
                   <div>{props.game.negativeName}</div>
@@ -57,7 +57,6 @@ const Modal = (props) => {
             </div>
           ) : null}
           <button onClick={props.closeModal}>ok!</button>
-          <button onClick={props.closeModal}>alles klar!</button>
         </div>
       </div>
     </>
