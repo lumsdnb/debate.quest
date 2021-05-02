@@ -50,6 +50,19 @@ const Toolbox = (props) => {
     setYourArgument('');
   }
 
+  function surrender() {
+    const messageObject = {
+      body: 'argument aufgegeben',
+      role: props.role,
+      type: 'surrender',
+      judgeRating: 0,
+      spectatorRating: 0,
+    };
+    props.sendMessage(messageObject);
+    document.getElementById('toolbox-form').reset();
+    setYourArgument('');
+  }
+
   const spectatorView = () => {
     return (
       <div className='spectator-board'>
@@ -134,6 +147,12 @@ const Toolbox = (props) => {
           <button type='button' className='form-btn' onClick={sendMessage}>
             {props.role === 'judge' ? 'Runde kommentieren' : 'Karte spielen'}
           </button>
+
+          {/*props.role === 'judge' ? null : (
+            <button type='button' className='form-btn' onClick={surrender}>
+              surrender!
+            </button>
+          )*/}
         </form>
       </div>
     </BlockUi>

@@ -21,18 +21,22 @@ const CardTable = (props) => {
   const listOfCards = props.cardList.map((c, index) => {
     if (index != 0)
       return (
-        <Card
-          key={c.index}
-          claim={c.body}
-          index={index}
-          role={c.role}
-          type={c.type}
-          source={c.source}
-          userRole={props.userRole}
-          spectatorRating={c.spectatorRating}
-          judgeRating={c.judgeRating}
-          rateCard={(i, r) => handleRating(i, r)}
-        />
+        <div
+          className={c.role === 'affirmative' ? 'pro-class' : 'contra-class'}
+        >
+          <Card
+            key={c.index}
+            claim={c.body}
+            index={index}
+            role={c.role}
+            type={c.type}
+            source={c.source}
+            userRole={props.userRole}
+            spectatorRating={c.spectatorRating}
+            judgeRating={c.judgeRating}
+            rateCard={(i, r) => handleRating(i, r)}
+          />
+        </div>
       );
   });
 
@@ -40,16 +44,18 @@ const CardTable = (props) => {
   const firstCard = props.cardList.map((c, index) => {
     if (index == 0)
       return (
-        <Card
-          key={c.index}
-          claim={c.body}
-          index={index}
-          role='Main'
-          userRole={props.userRole}
-          spectatorRating={c.spectatorRating}
-          judgeRating={c.judgeRating}
-          rateCard={handleRating}
-        />
+        <div className='main-class'>
+          <Card
+            key={c.index}
+            claim={c.body}
+            index={index}
+            role='Main'
+            userRole={props.userRole}
+            spectatorRating={c.spectatorRating}
+            judgeRating={c.judgeRating}
+            rateCard={handleRating}
+          />
+        </div>
       );
   });
   useEffect(() => {

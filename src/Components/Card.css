@@ -127,6 +127,20 @@ progress {
   position: relative;
   bottom: 2rem;
 }
+.pro-class {
+  background-color: rgb(86, 179, 123);
+  border-radius: 0.5rem;
+  margin: 0.1rem;
+}
+.contra-class {
+  background-color: rgb(212, 103, 99);
+  border-radius: 0.5rem;
+  margin: 0.1rem;
+}
+.main-class {
+  background-color: rgb(194, 204, 159);
+  border-radius: 0.5rem;
+}
 
 .card-stamp {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
