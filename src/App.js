@@ -522,7 +522,7 @@ const App = () => {
       <Modal
         title='Debate Quest'
         showModal={showInfo}
-        body={'hier stehen infos über das Spiel'}
+        body={'Debattieren im Internet! Teil eines h_da Masterprojektes'}
         closeModal={closeModal}
       />
 
