@@ -136,7 +136,7 @@ const App = () => {
     volume: 0.6,
   });
   useEffect(() => {
-    socketRef.current = io.connect(localENDPOINT);
+    socketRef.current = io.connect(productionENDPOINT);
     socketRef.current.on('your id', (id) => {
       setYourID(id);
     });
