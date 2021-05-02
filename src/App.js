@@ -84,7 +84,8 @@ const App = () => {
   const [finalVotes, setFinalVotes] = useState([]);
 
   const debateTopics = [
-    'Der ÖPNV sollte kostenlos für alle verfügbar sein.',
+    'Jeansjacken sind besser als Lederjacken',
+    'Klopapier ist überbewertet!',
     'Autos mit Verbrennungsmotor sollten verboten werden.',
     'Die Mietpreisbremse ist ineffektiv und sollte abgeschafft werden.',
   ];
@@ -115,11 +116,11 @@ const App = () => {
   });
 
   const [playWoo, { stop }] = useSound(soundWoo, {
-    volume: 0.2,
+    volume: 0.1,
   });
 
   const [playBoo] = useSound(soundBoo, {
-    volume: 0.2,
+    volume: 0.1,
   });
   const [playAirhorn] = useSound(soundAirhorn, {
     volume: 0.1,
@@ -135,7 +136,7 @@ const App = () => {
     volume: 0.6,
   });
   useEffect(() => {
-    socketRef.current = io.connect(productionENDPOINT);
+    socketRef.current = io.connect(localENDPOINT);
     socketRef.current.on('your id', (id) => {
       setYourID(id);
     });
